@@ -5,6 +5,7 @@
       app
       clipped
       right
+      :width="320"
     >
       <v-list dense>
         <v-list-item @click.stop="right = !right">
@@ -15,6 +16,8 @@
             <v-list-item-title>Open Temporary Drawer1</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <PlayerMenu v-for="i in 8" :key="i"/>
+
       </v-list>
     </v-navigation-drawer>
 
@@ -88,13 +91,15 @@
 </template>
 
 <script>
-import Board from "./components/Board"  
+import Board from "./components/Board" 
+import PlayerMenu from "./components/PlayerMenu"   
 
   export default {
     name:"App",
 
     components:{
-      Board
+      Board,
+      PlayerMenu
     },
     props: {
       source: String,
@@ -111,6 +116,6 @@ import Board from "./components/Board"
 <style>
 .v-application {
 font-family: "Oswald", sans-serif !important;
-}
-  
+}  
+
 </style>
