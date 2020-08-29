@@ -1,4 +1,5 @@
 <template>
+ <div class="board_parent">
   <div class="board">
     <div class="board_center">
       <div class="community-chest-deck">
@@ -355,13 +356,29 @@
       </div>
     </div>
   </div>
+  <Dice class="diceComponent"/>
+ </div>
 </template>
 
 <script>
-export default {};
+import Dice from './dice'
+export default {
+  components:{
+    Dice
+  }
+};
 </script>
 
 <style scoped lang="scss">
 @import "../assets/css/board.css";
 //  @import  '../assets/scss/board.scss';
+.diceComponent {
+position:absolute;
+top:300px;
+left:150px;
+z-index:2;
+}
+.board_parent{
+  position: relative;
+}
 </style>

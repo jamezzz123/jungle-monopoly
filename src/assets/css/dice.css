@@ -1,0 +1,127 @@
+  #view{
+    width:500px;
+    height:200px;
+    margin:100px;
+    perspective:1000px;
+    /* margin: 50px; */
+    transform: scale(0.5);
+    display:flex;
+    justify-content: space-between;
+    }
+
+    .dice{
+    width:200px;
+    height:200px;
+    position:relative;
+    transform-style:preserve-3d;
+    /*transition: transform 1s; */
+
+    /* animation-duration: 3s;  
+    animation-name: slidein; 
+    animation-iteration-count: infinite; 
+    animation-direction: alternate;  */
+
+     /*ease-out*/
+    }
+
+    @keyframes slidein {
+        from {
+            transform:rotateY(180deg);
+        }
+
+        10% {
+             transform:rotateX(-90deg);
+        }
+
+        30% {
+         transform:rotateX(90deg)  rotateZ(360deg);
+        }
+
+        75% {
+            transform:rotateY(0deg) rotateZ(360deg);
+        }
+
+        80% {
+            transform:rotateY(90deg) rotateZ(360deg);
+        }
+
+        
+        to {
+            transform:rotateY(180deg) !important;
+            margin:10px;
+            
+        }
+
+    }
+    /* #btnFront:checked ~ #view>#dice{
+    transform:rotateY(360deg) !important;
+    }
+    #btnRight:checked ~ #view>#dice{
+    transform:rotateY(-90deg) !important;
+    }
+    #btnBack:checked ~ #view>#dice{
+    transform:rotateY(180deg) !important;
+    }
+    #btnLeft:checked ~ #view>#dice{
+    transform:rotateY(90deg) !important;
+    }
+    #btnTop:checked ~ #view>#dice{
+    transform:rotateX(-90deg) !important;
+    }
+    #btnBottom:checked ~ #view>#dice{
+    transform:rotateX(90deg) !important;
+    } */
+    .diceFace{
+    position:absolute;
+    width:200px;
+    height:200px;
+    text-align:center;
+    line-height:200px;
+    border: 2px #a6a2a2 solid;
+    background-color: #ffffff !important;
+    }
+    .dice_front{
+    /* background-color:rgba(255,0,0,0.6); */
+    transform:rotateY(0deg) translateZ(100px);
+    }
+    .dice_right{
+    /* background-color:rgba(0,255,0,0.6); */
+    transform:rotateY(90deg) translateZ(100px);
+    }
+    .dice_back {
+    /* background-color:rgba(255,255,0,0.6); */
+    transform:rotateY(180deg) translateZ(100px);
+    }
+    .dice_left {
+    /* background-color:rgba(255,0,255,0.6); */
+    transform:rotateY(-90deg) translateZ(100px);
+    }
+    .dice_top {
+    /* background-color:rgba(0,255,255,0.6); */
+    transform:rotateX(90deg) translateZ(100px);
+    }
+    .dice_bottom {
+    /* background-color:rgba(0,0,255,0.6); */
+    transform:rotateX(-90deg) translateZ(100px);
+    }
+   
+    .dots{
+        margin: 0 auto;
+        line-height: normal;
+        position: initial;
+        display: flex;
+        /* justify-content: space-evenly; */
+        width: 200px;
+        height: 200px;
+        flex-wrap: wrap;
+        /* flex-direction: column; */
+    }
+
+    .dots__size {
+        width: 50px;
+        height: 50px;
+        background-color: #000000;
+        border-radius: 50%;
+        margin: 10px;
+        /* margin: 0 auto; */
+    }

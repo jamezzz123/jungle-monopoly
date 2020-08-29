@@ -16,7 +16,7 @@
             <v-list-item-title>Open Temporary Drawer1</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <PlayerMenu v-for="i in 8" :key="i"/>
+        <PlayerMenu v-for="i in 5" :key="i"/>
 
       </v-list>
     </v-navigation-drawer>
@@ -75,7 +75,7 @@
       fixed
       right
       temporary
-      hide-overlay="true"
+      hide-overlay
     > <h1>History Log</h1></v-navigation-drawer>
     
     <v-footer

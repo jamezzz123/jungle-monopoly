@@ -2,10 +2,10 @@
  <v-list-item style="padding:5px">
   <v-list-item-content class="elevation-6 player-rounded" style="padding:5px">
     <div class="d-flex flex-row justify-space-between align-center player_item">
-      <img class="player_img" :src="require('@/assets/svg/001-owl.svg')"/>
+      <img class="player_img" :src="require('@/assets/svg/008-pig.svg')"/>
         <div class="d-flex flex-column player_text">
             <h6 class="player_text_name">Player 2</h6>
-            <h5 class="player_text_money">10000000</h5>
+            <h5 class="player_text_money">&#8361;10000000</h5>
         </div>  
     </div>
    </v-list-item-content>
