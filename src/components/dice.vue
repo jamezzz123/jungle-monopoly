@@ -3,7 +3,10 @@
     <div id="view">
       <div class="dice" id="dice1">
         <div class="diceFace dice_front">
-          <div class="dots" style="justify-content: space-evenly; flex-direction: column;">
+          <div
+            class="dots"
+            style="justify-content: space-evenly; flex-direction: column;"
+          >
             <div class="dots__size" style="margin: 0 auto"></div>
           </div>
         </div>
@@ -50,7 +53,10 @@
       </div>
       <div class="dice" id="dice2">
         <div class="diceFace dice_front">
-          <div class="dots" style="justify-content: space-evenly; flex-direction: column;">
+          <div
+            class="dots"
+            style="justify-content: space-evenly; flex-direction: column;"
+          >
             <div class="dots__size" style="margin: 0 auto"></div>
           </div>
         </div>

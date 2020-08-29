@@ -7,8 +7,8 @@ import vuetify from "./plugins/vuetify";
 Vue.config.productionTip = false;
 
 // vue anima js
-import VueAnime from 'vue-animejs';
-Vue.use(VueAnime)
+import VueAnime from "vue-animejs";
+Vue.use(VueAnime);
 
 new Vue({
   router,
