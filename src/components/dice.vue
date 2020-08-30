@@ -108,7 +108,7 @@
 <script>
 // import anime from 'animejs/lib/anime.es.js';
 // import { gsap } from "gsap";
-import { random,shuffle } from "lodash"; //we are gona have to find a way to reduce
+import { random, shuffle } from "lodash"; //we are gona have to find a way to reduce
 //the size of the bundle because of lodash
 
 export default {
@@ -126,57 +126,56 @@ export default {
   }),
 
   methods: {
-    diceRoll:function(elem){
+    diceRoll: function(elem) {
       let rotationDeg = [90, -90, 180, -180, 270, 360]; // all possible degree
       let randomDiceRoll = random(1, 6);
 
       let dice = this.$anime.timeline({
-      targets: elem,
-      loop: false,
-      // easing:"inElastic"
-    });
+        targets: elem,
+        loop: false
+        // easing:"inElastic"
+      });
 
-    dice.add({
-      rotateX: [
-        { value: rotationDeg[random(rotationDeg.length - 1)] },
-        { value: rotationDeg[random(rotationDeg.length - 1)] },
-        { value: rotationDeg[random(rotationDeg.length - 1)] },
-        { value: rotationDeg[random(rotationDeg.length - 1)] },
-        { value: rotationDeg[random(rotationDeg.length - 1)] }
-      ],
-      rotateY: [
-        { value: rotationDeg[random(rotationDeg.length - 1)] },
-        { value: rotationDeg[random(rotationDeg.length - 1)] },
-        { value: -rotationDeg[random(rotationDeg.length - 1)] },
-        { value: rotationDeg[random(rotationDeg.length - 1)] },
-        { value: rotationDeg[random(rotationDeg.length - 1)] }
-      ],
-      rotateZ: 360,
-      rotate: 360,
-      direction: "alternate"
-    });
-    dice.add({
-      rotateY: this.diceFaceNumber[randomDiceRoll][0],
-      rotateX: this.diceFaceNumber[randomDiceRoll][1],
-      rotateZ: 360,
-      rotate: 360,
-      direction: "alternate"
-    });
+      dice.add({
+        rotateX: [
+          { value: rotationDeg[random(rotationDeg.length - 1)] },
+          { value: rotationDeg[random(rotationDeg.length - 1)] },
+          { value: rotationDeg[random(rotationDeg.length - 1)] },
+          { value: rotationDeg[random(rotationDeg.length - 1)] },
+          { value: rotationDeg[random(rotationDeg.length - 1)] }
+        ],
+        rotateY: [
+          { value: rotationDeg[random(rotationDeg.length - 1)] },
+          { value: rotationDeg[random(rotationDeg.length - 1)] },
+          { value: -rotationDeg[random(rotationDeg.length - 1)] },
+          { value: rotationDeg[random(rotationDeg.length - 1)] },
+          { value: rotationDeg[random(rotationDeg.length - 1)] }
+        ],
+        rotateZ: 360,
+        rotate: 360,
+        direction: "alternate"
+      });
+      dice.add({
+        rotateY: this.diceFaceNumber[randomDiceRoll][0],
+        rotateX: this.diceFaceNumber[randomDiceRoll][1],
+        rotateZ: 360,
+        rotate: 360,
+        direction: "alternate"
+      });
 
-    return randomDiceRoll;
-
+      return randomDiceRoll;
     },
 
-    randomFace:function(){
-      let diceFaces = [1,2,3,4,5,6];
-      let shuffledFaces  = shuffle(diceFaces);
+    randomFace: function() {
+      let diceFaces = [1, 2, 3, 4, 5, 6];
+      let shuffledFaces = shuffle(diceFaces);
       console.log(shuffledFaces);
-      return shuffledFaces[random(shuffledFaces.length -1)];
+      return shuffledFaces[random(shuffledFaces.length - 1)];
     }
   },
 
   mounted() {
-    let { dice1,dice2} = this.$refs;
+    let { dice1, dice2 } = this.$refs;
     this.dice1roll = this.diceRoll(dice1);
     this.dice2roll = this.diceRoll(dice2);
   }
