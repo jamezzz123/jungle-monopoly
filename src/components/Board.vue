@@ -370,14 +370,118 @@
       </div>
     </div>
     <Dice class="diceComponent" />
+    <PlayerImage class="playerComponent" id="cat" ref="cat" />
   </div>
 </template>
 
 <script>
 import Dice from "./dice";
+import PlayerImage from "./PlayerImage";
 export default {
   components: {
-    Dice
+    Dice,
+    PlayerImage
+  },
+  data: () => ({
+    movementArr: [],
+    direction: [
+      "-=100",
+      "-=81",
+      "-=81",
+      "-=82",
+      "-=80",
+      "-=80",
+      "-=81",
+      "-=81",
+      "-=82",
+      "-=130",
+      
+      "-=100",
+      "-=81",
+      "-=82",
+      "-=80",
+      "-=80",
+      "-=81",
+      "-=81",
+      "-=82",
+      "-=82",
+      "-=110",
+
+      "+=130",
+      "+=82",
+      "+=80",
+      "+=80",
+      "+=81",
+      "+=81",
+      "+=82",
+      "+=82",
+      "+=81",
+
+      "+=110",
+      "+=100",
+      "+=82",
+      "+=80",
+      "+=81",
+      "+=81",
+      "+=82",
+      "+=82",
+      "+=81",
+      "+=82",
+      "+=110"
+    ]
+  }),
+  methods: {
+    movement(elem) {
+      let move = this.$anime.timeline({
+        targets: `#${elem}`,
+        loop: false,
+        easing: "easeOutExpo"
+      });
+
+      for (let index = 0; index < 40; index++) {
+        if ((index >= 0 && index < 10) || (index >= 20 && index < 30)) {
+          move.add({
+            left: [
+              {
+                value: this.direction[index],
+                duration: 800,
+                delay: 100
+              }
+            ],
+            scale: {
+              value: [1.5, 1],
+              delay: 300
+            },
+            complete(el) {
+              console.log(el);
+            }
+          });
+        }
+
+        if ((index >= 10 && index < 20) || (index >= 30 && index < 40)) {
+          move.add({
+            top: [
+              {
+                value: this.direction[index],
+                duration: 800,
+                delay: 100
+              }
+            ],
+            scale: {
+              value: [1.5, 1],
+              delay: 300
+            },
+            complete() {
+              console.log(this.direction[index]);
+            }
+          });
+        }
+      }
+    },    
+  },
+  mounted() {
+    this.movement("cat");
+    // this.testing("cat");
   }
 };
 </script>
@@ -393,5 +497,11 @@ export default {
 }
 .board_parent {
   position: relative;
+}
+.playerComponent {
+  position: absolute;
+  top: 900px;
+  left: 900px;
+  z-index: 2;
 }
 </style>
