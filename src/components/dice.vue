@@ -175,7 +175,7 @@ export default {
   },
 
   mounted() {
-    let { dice1, dice2 } = this.$refs;
+    const { dice1, dice2 } = this.$refs;
     this.dice1roll = this.diceRoll(dice1);
     this.dice2roll = this.diceRoll(dice2);
   }
