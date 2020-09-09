@@ -369,7 +369,7 @@
         </div>
       </div>
     </div>
-    <Dice class="diceComponent" />
+    <Dice class="diceComponent" v-on:onRoll="movement" />
     <PlayerImage class="playerComponent" id="cat" ref="cat" />
   </div>
 </template>
@@ -395,7 +395,7 @@ export default {
       "-=81",
       "-=82",
       "-=130",
-      
+
       "-=100",
       "-=81",
       "-=82",
@@ -428,22 +428,49 @@ export default {
       "+=81",
       "+=82",
       "+=110"
-    ]
+    ],
+    position:0
   }),
   methods: {
-    movement(elem) {
+    movement(elem,moveit) {
       let move = this.$anime.timeline({
         targets: `#${elem}`,
         loop: false,
-        easing: "easeOutExpo"
+        easing: "easeOutExpo",
       });
+  
+    let index = 0;
+    let moves =  this.position;
 
-      for (let index = 0; index < 40; index++) {
-        if ((index >= 0 && index < 10) || (index >= 20 && index < 30)) {
+    while (index < moveit){
+        if(moves == 39){
+          move.add({
+              left: [
+                {
+                  value: 900,
+                  duration: 800,
+                  delay: 100
+                }
+              ],
+              top: [
+                {
+                  value: 900,
+                  duration: 800,
+                  delay: 100
+                }
+              ],
+              scale: {
+                value: [1.5, 1],
+                delay: 300
+              },
+            });
+        }
+      
+        if ((moves >= 0 && moves < 10) || (moves >= 20 && moves < 30)) {
           move.add({
             left: [
               {
-                value: this.direction[index],
+                value: this.direction[moves],
                 duration: 800,
                 delay: 100
               }
@@ -452,17 +479,14 @@ export default {
               value: [1.5, 1],
               delay: 300
             },
-            complete(el) {
-              console.log(el);
-            }
           });
         }
 
-        if ((index >= 10 && index < 20) || (index >= 30 && index < 40)) {
+        if ((moves >= 10 && moves < 20) || (moves >= 30 && moves < 39)) {
           move.add({
             top: [
               {
-                value: this.direction[index],
+                value: this.direction[moves],
                 duration: 800,
                 delay: 100
               }
@@ -471,17 +495,24 @@ export default {
               value: [1.5, 1],
               delay: 300
             },
-            complete() {
-              console.log(this.direction[index]);
-            }
           });
         }
-      }
+
+        moves++;index++;
+
+        if(moves > 39){
+         moves = 0 
+        }
+    }
+
+    this.position = moves;
+          
     },    
   },
   mounted() {
-    this.movement("cat");
+    // this.movement("cat");
     // this.testing("cat");
+   ;
   }
 };
 </script>
