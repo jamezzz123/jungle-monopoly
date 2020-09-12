@@ -4,7 +4,7 @@
       <img
         class=""
         style="z-index:3"
-        :src="require('@/assets/svg/003-cat.svg')"
+        :src="image_url"
         width="50px"
         alt="player image"
       />
@@ -17,6 +17,7 @@
 <script>
 export default {
   name: "PlayerImage",
+  props: ["image_url"],
   mounted() {
     // const { bubblePulse} = this.$refs;
     // let tl =this.$anime.timeline({

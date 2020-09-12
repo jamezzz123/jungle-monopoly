@@ -10,7 +10,11 @@
             <v-list-item-title>Open Temporary Drawer1</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <PlayerMenu v-for="i in 5" :key="i" />
+        <PlayerMenu
+          v-for="(item, index) in players"
+          :key="index"
+          :player="item"
+        />
       </v-list>
     </v-navigation-drawer>
 
@@ -34,29 +38,37 @@
         class="hidden-sm-and-down"
       ></v-text-field>
       <v-spacer></v-spacer>
+
+      <!-- For the Theming  -->
+      <v-icon>mdi-weather-sunny</v-icon>
+      <v-list-item-action class="ml-2">
+        <v-switch id="themeSwitcher" v-model="isDark" inset></v-switch>
+      </v-list-item-action>
+      <v-icon>mdi-weather-night</v-icon>
+      <!--  -->
+
       <v-btn icon>
         <v-icon>mdi-apps</v-icon>
       </v-btn>
       <v-btn icon>
         <v-icon>mdi-bell</v-icon>
       </v-btn>
-
       <v-app-bar-nav-icon
         @click.stop="drawerRight = !drawerRight"
       ></v-app-bar-nav-icon>
     </v-app-bar>
 
     <v-main>
-      <v-container class="fill-height" fluid>
-        <Board />
-        <!-- </v-row> -->
-      </v-container>
+      <vue-page-transition name="overlay-right">
+        <router-view></router-view>
+      </vue-page-transition>
     </v-main>
+
     <v-navigation-drawer v-model="right" fixed right temporary hide-overlay>
       <h1>History Log</h1></v-navigation-drawer
     >
 
-    <v-footer app color="blue-grey" class="white--text">
+    <v-footer app color="blue darken-3" class="white--text">
       <span>Vuetify</span>
       <v-spacer></v-spacer>
       <span>&copy; {{ new Date().getFullYear() }}</span>
@@ -65,30 +77,44 @@
 </template>
 
 <script>
-import Board from "./components/Board";
+// import Board from "./components/Board";
 import PlayerMenu from "./components/PlayerMenu";
 
 export default {
   name: "App",
 
   components: {
-    Board,
+    // Board,
     PlayerMenu
   },
   props: {
     source: String
   },
   data: () => ({
-    drawer: null,
-    drawerRight: null,
+    // drawer: null,
+    drawerRight: false,
     right: false,
-    left: false
-  })
+    // for dark theme
+    isDark: false
+  }),
+  computed: {
+    players() {
+      console.log(this.$store.state.players);
+      return this.$store.state.players;
+    }
+  },
+  watch: {
+    isDark() {
+      this.$vuetify.theme.dark = this.isDark;
+      
+    }
+  }
 };
 </script>
 
 <style>
 .v-application {
   font-family: "Oswald", sans-serif !important;
+  text-transform: uppercase;
 }
 </style>

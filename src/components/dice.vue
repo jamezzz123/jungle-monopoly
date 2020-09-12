@@ -122,11 +122,13 @@ export default {
       6: [180, 0]
     },
     dice1roll: "",
-    dice2roll: ""
+    dice2roll: "",
+    playImageArr: ["panda", "cat", "pig", "monkey", "bear", "dog", "owl"],
+    currentTurn: -1
   }),
 
   methods: {
-    diceRoll: function(elem,randomDiceRoll) {
+    diceRoll: function(elem, randomDiceRoll) {
       let rotationDeg = [90, -90, 180, -180, 270, 360]; // all possible degree
       // let randomDiceRoll = random(1, 6);
 
@@ -171,35 +173,45 @@ export default {
       let shuffledFaces = shuffle(diceFaces);
       console.log(shuffledFaces);
       return shuffledFaces[random(shuffledFaces.length - 1)];
+    },
+    currentPlayerTurn() {
+      // debugger;
+      this.currentTurn++;
+      if (this.currentTurn > this.$store.state.players.length) {
+        this.currentTurn = 0;
+      }
+      console.log(this.$store.state.players[this.currentTurn]);
+      return this.$store.state.players[this.currentTurn];
     }
   },
 
   mounted() {
     const { dice1, dice2 } = this.$refs;
-     this.dice1roll = random(1, 6);
-     this.dice2roll = random(1, 6);
-     setInterval(() => {
-       Promise.all([this.diceRoll(dice1,this.dice1roll).finished, this.diceRoll(dice2,this.dice2roll).finished]).then(() => {
-         let total = this.dice1roll + this.dice2roll;
-         this.$emit("onRoll",'cat',total)
-         console.log("total",total);
-     })
-     }, 20000); 
-     
 
-    //  this.diceRoll(dice1,this.dice1roll).finished.then(()=>{
-    //    this.diceRoll(dice2,this.dice2roll).finished.then(()=>{
-    //   setTimeout(() => {
-    //       let total = this.dice1roll + this.dice2roll
-    //       console.log("total",total);
-    //       this.$emit("onRoll",'cat',total)
-    //       },5000)
-    //    });
-    //  });
-     
+    setInterval(() => {
+      this.dice1roll = random(1, 6);
+      this.dice2roll = random(1, 6);
+      let pid = this.currentPlayerTurn();
+      console.log(pid);
 
-    
-  
+      Promise.all([
+        this.diceRoll(dice1, this.dice1roll).finished,
+        this.diceRoll(dice2, this.dice2roll).finished
+      ]).then(() => {
+        let total = this.dice1roll + this.dice2roll;
+        //  let pid = this.currentPlayerTurn();
+        //  console.log(pid);
+        // debugger;
+        this.$emit(
+          "onRoll",
+          pid.playerPiece.id,
+          total,
+          pid.currentPosition,
+          this.currentTurn
+        );
+        //  console.log("total",total);
+      });
+    }, 20000);
   }
 };
 </script>

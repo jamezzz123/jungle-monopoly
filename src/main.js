@@ -12,6 +12,10 @@ Vue.config.productionTip = false;
 import VueAnime from "vue-animejs";
 Vue.use(VueAnime);
 
+// vue transition
+import VuePageTransition from "vue-page-transition";
+Vue.use(VuePageTransition);
+
 new Vue({
   router,
   store,

@@ -4,10 +4,10 @@
       <div
         class="d-flex flex-row justify-space-between align-center player_item"
       >
-        <img class="player_img" :src="require('@/assets/svg/008-pig.svg')" />
+        <img class="player_img" :src="player.playerPiece.imageUrl" />
         <div class="d-flex flex-column player_text">
-          <h6 class="player_text_name">Player 2</h6>
-          <h5 class="player_text_money">&#8361;10000000</h5>
+          <h6 class="player_text_name">{{ player.name }}</h6>
+          <h5 class="player_text_money">&#8361;{{ player.balance }}</h5>
         </div>
       </div>
     </v-list-item-content>
@@ -16,7 +16,8 @@
 
 <script>
 export default {
-  name: "PlayerMenu"
+  name: "PlayerMenu",
+  props: ["player"]
 };
 </script>
 

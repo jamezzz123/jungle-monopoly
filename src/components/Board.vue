@@ -370,7 +370,14 @@
       </div>
     </div>
     <Dice class="diceComponent" v-on:onRoll="movement" />
-    <PlayerImage class="playerComponent" id="cat" ref="cat" />
+    <!-- <PlayerImage class="playerComponent" id="cat" ref="cat" /> -->
+    <PlayerImage
+      class="playerComponent"
+      v-for="i in PlayerImages"
+      :key="i.id"
+      :id="i.id"
+      :image_url="i.imageUrl"
+    />
   </div>
 </template>
 
@@ -429,43 +436,77 @@ export default {
       "+=82",
       "+=110"
     ],
-    position:0
+    position: 0,
+    PlayerImages: [
+      {
+        id: "cat",
+        imageUrl: require("@/assets/svg/003-cat.svg")
+      },
+      {
+        id: "owl",
+        imageUrl: require("@/assets/svg/001-owl.svg")
+      },
+      {
+        id: "dog",
+        imageUrl: require("@/assets/svg/004-dog.svg")
+      },
+      {
+        id: "cow",
+        imageUrl: require("@/assets/svg/005-cow.svg")
+      },
+      {
+        id: "panda",
+        imageUrl: require("@/assets/svg/006-panda.svg")
+      },
+      {
+        id: "pig",
+        imageUrl: require("@/assets/svg/008-pig.svg")
+      },
+      {
+        id: "monkey",
+        imageUrl: require("@/assets/svg/009-monkey.svg")
+      },
+      {
+        id: "bear",
+        imageUrl: require("@/assets/svg/010-bears.svg")
+      }
+    ]
   }),
   methods: {
-    movement(elem,moveit) {
+    movement(elem, moveit, position, turn) {
       let move = this.$anime.timeline({
         targets: `#${elem}`,
         loop: false,
-        easing: "easeOutExpo",
+        easing: "easeOutExpo"
       });
-  
-    let index = 0;
-    let moves =  this.position;
 
-    while (index < moveit){
-        if(moves == 39){
+      let index = 0;
+      let moves = position;
+
+      while (index < moveit) {
+        if (moves == 39) {
           move.add({
-              left: [
-                {
-                  value: 900,
-                  duration: 800,
-                  delay: 100
-                }
-              ],
-              top: [
-                {
-                  value: 900,
-                  duration: 800,
-                  delay: 100
-                }
-              ],
-              scale: {
-                value: [1.5, 1],
-                delay: 300
-              },
-            });
+            left: [
+              {
+                value: 900,
+                duration: 800,
+                delay: 100
+              }
+            ],
+            top: [
+              {
+                value: 900,
+                duration: 800,
+                delay: 100
+              }
+            ],
+            scale: {
+              value: [1.5, 1],
+              delay: 300
+            }
+          });
         }
-      
+
         if ((moves >= 0 && moves < 10) || (moves >= 20 && moves < 30)) {
           move.add({
             left: [
@@ -478,7 +519,7 @@ export default {
             scale: {
               value: [1.5, 1],
               delay: 300
-            },
+            }
           });
         }
 
@@ -494,25 +535,24 @@ export default {
             scale: {
               value: [1.5, 1],
               delay: 300
-            },
+            }
           });
         }
 
-        moves++;index++;
+        moves++;
+        index++;
 
-        if(moves > 39){
-         moves = 0 
+        if (moves > 39) {
+          moves = 0;
         }
+      }
+      this.$store.state.players[turn].currentPosition = moves;
+      // this.position = moves;
     }
-
-    this.position = moves;
-          
-    },    
   },
   mounted() {
     // this.movement("cat");
     // this.testing("cat");
-   ;
   }
 };
 </script>
