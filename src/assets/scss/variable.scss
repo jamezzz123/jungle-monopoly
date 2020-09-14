@@ -1,1 +1,18 @@
-$body-font-family: "Oswald",sans-serif;
+// $body-font-family: "Oswald",sans-serif;
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap');
+$body-font-family:'Oswald';
+$text-font:'Quicksand';
+
+.v-application {
+    font-family: $body-font-family, sans-serif !important;
+
+    // .title {
+    //     // To pin point specific classes of some components
+    //     font-family: $body-font-family, sans-serif !important;
+    // }
+
+    .display-2{
+        font-family: $text-font,sans-serif !important;
+    }
+}

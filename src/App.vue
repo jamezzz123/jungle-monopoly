@@ -18,11 +18,11 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar app clipped-right color="blue darken-3" dark>
+    <v-app-bar app clipped-right color="grey darken-3" dark>
       <v-btn icon large>
         <v-avatar size="32px" item>
           <v-img
-            src="https://cdn.vuetifyjs.com/images/logos/logo.svg"
+            :src="require('@/assets/svg/001-gorilla.svg')"
             alt="Vuetify"
           ></v-img
         ></v-avatar>
@@ -68,7 +68,7 @@
       <h1>History Log</h1></v-navigation-drawer
     >
 
-    <v-footer app color="blue darken-3" class="white--text">
+    <v-footer app color="grey darken-3" class="white--text">
       <span>Vuetify</span>
       <v-spacer></v-spacer>
       <span>&copy; {{ new Date().getFullYear() }}</span>
@@ -112,9 +112,20 @@ export default {
 };
 </script>
 
-<style>
-.v-application {
-  font-family: "Oswald", sans-serif !important;
-  text-transform: uppercase;
-}
+<style lang="scss">
+// .v-application {
+//   font-family: "Oswald", sans-serif !important;
+//   text-transform: uppercase;
+// }
+
+
+
+// .v-application {
+  //  font-family: $body-font-family, sans-serif !important;
+    // .title { // To pin point specific classes of some components
+    //    font-family: $title-font, sans-serif !important;
+    // }
+//  }
+
+
 </style>
